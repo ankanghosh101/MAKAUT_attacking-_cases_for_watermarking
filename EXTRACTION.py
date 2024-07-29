@@ -219,7 +219,10 @@ def extract(embedded_DIR_local=embedded_DIR, extracted_DIR_local=extracted_DIR, 
     None
 
     """
-    embedd_image_names = get_image_names(embedded_DIR)
+    
+    embedd_image_names = get_image_names(embedded_DIR_local)
+    # Create the folder if it doesn't exist
+    os.makedirs(extracted_DIR_local, exist_ok=True)
     threads = []
     for imgname in embedd_image_names:
         thread = threading.Thread(target=process4extract_image, args=(imgname, embedded_DIR_local, extracted_DIR_local, shape))

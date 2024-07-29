@@ -312,7 +312,9 @@ def embed(images_DIR_local=images_DIR, embedded_DIR_local=embedded_DIR, watermar
     
     watermark = cv2.imread(watermark_DIR_local)
     water = concatenate_color_image_to_2d(watermark)
-    
+
+    # Create the folder if it doesn't exist
+    os.makedirs(embedded_DIR_local, exist_ok=True)
     threads = []
     for imgname in image_names:
         thread = threading.Thread(target=process4embedd_image, args=(water, imgname, images_DIR_local, embedded_DIR_local))
